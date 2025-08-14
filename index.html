@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LELIJKSTE WEBSITE OOIT — Internationale Aardappel Fanclub</title>
+<style>
+  /* Slechtste CSS ooit: overbodig, inconsistent, oogpijn-garantie */
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: Comic Sans MS, Papyrus, "Times New Roman", cursive, fantasy, monospace;
+    background:
+      repeating-linear-gradient(45deg, #ff00ff, #ff00ff 10px, #00ffff 10px, #00ffff 20px),
+      radial-gradient(circle at 20% 30%, #ffff00 0 10%, transparent 11%),
+      radial-gradient(circle at 80% 70%, #00ff00 0 12%, transparent 13%),
+      linear-gradient(90deg, #ff0000, #0000ff);
+    color: #111;
+    cursor: crosshair;
+    image-rendering: pixelated;
+  }
+
+  /* knipperende dingen */
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  .blink { animation: blink 0.6s steps(1) infinite; }
+
+  /* draaiende dingen */
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spin { display: inline-block; animation: spin 2s linear infinite; }
+
+  /* trillen */
+  @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }}
+  .shake { animation: shake 1.2s infinite; display: inline-block; }
+
+  /* afzichtelijke randen */
+  .bad-border {
+    border: 12px dotted #0ff;
+    outline: 8px ridge #f0f;
+    box-shadow: 0 0 0 20px #ff0 inset, 0 0 30px 10px #0f0, 0 0 60px 20px #f00;
+    border-radius: 0 50% 0 50%;
+  }
+
+  /* tabel-layout (echt niet doen) */
+  table.layout { width: 100%; border-collapse: separate; border-spacing: 15px; }
+  td { background: rgba(255,255,255,0.6); padding: 20px; vertical-align: top; }
+
+  /* lelijke knoppen */
+  .btn {
+    background: repeating-linear-gradient(90deg, #ff0, #ff0 6px, #f0f 6px, #f0f 12px);
+    padding: 12px 22px; display: inline-block; border: 6px outset #0ff; text-transform: uppercase;
+    text-decoration: blink; /* bestaat niet meer, fantastisch */
+    text-shadow: 2px 2px 0 #000, -2px -2px 0 #0ff, 0 0 10px #f0f;
+    color: #000; cursor: wait; transform: skew(8deg, -4deg);
+  }
+  .btn:hover { filter: hue-rotate(222deg) saturate(3); transform: skew(-8deg, 6deg) scale(1.1); }
+
+  /* marquee fallback */
+  .marquee { white-space: nowrap; overflow: hidden; box-sizing: border-box; }
+  .marquee span { display: inline-block; padding-left: 100%; animation: marquee 12s linear infinite; }
+  @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+
+  /* multi-font chaos */
+  .mix-fonts *:nth-child(odd) { font-family: Impact, fantasy; }
+  .mix-fonts *:nth-child(even) { font-family: "Courier New", monospace; }
+
+  /* onleesbare links */
+  a { color: #f00; background: #0ff; padding: 4px; border: 4px dashed #00f; }
+  a:hover { color: #0f0; background: #f0f; text-decoration: overline underline line-through wavy; }
+
+  /* grote titels met spontane animaties */
+  h1, h2, h3 { text-align: center; text-transform: capitalize; letter-spacing: 8px; }
+  h1 { font-size: 68px; background: linear-gradient(45deg, #000, #fff); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 10px #0ff; }
+  h2 { font-size: 42px; text-shadow: -3px 3px 0 #ff0, 3px -3px 0 #0ff; }
+  h3 { font-size: 32px; }
+
+  /* rare lijststijlen */
+  ul { list-style: square inside url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="10" height="10" fill="red"/></svg>'); }
+  ol { list-style: upper-roman; }
+
+  /* form foute styling */
+  input, select, textarea { border: 6px groove magenta; background: repeating-linear-gradient(45deg,#fff,#fff 8px,#ccc 8px,#ccc 16px); padding: 10px; }
+  label { display: block; font-weight: 900; text-transform: uppercase; }
+
+  /* footer altijd in de weg */
+  footer { position: sticky; bottom: 0; background: rgba(0,0,0,0.8); color: #0f0; padding: 10px; font-size: 14px; text-align: center; text-decoration: underline wavy red; }
+
+  /* gigantische inhoudsblokken */
+  .section { margin: 30px; padding: 20px; backdrop-filter: invert(1) hue-rotate(160deg); }
+
+  /* tabels vol borders */
+  table.data { width: 100%; border: 10px double #f0f; }
+  table.data td, table.data th { border: 6px dotted #0ff; padding: 8px; }
+
+  /* ascii art container */
+  pre { background: #000; color: #0f0; padding: 20px; border: 12px groove #f0f; overflow: auto; font-size: 14px; }
+
+  /* vreselijke sticky nav */
+  .nav { position: sticky; top: 0; z-index: 9999; background: repeating-linear-gradient(90deg, #ff0000,#ff0000 20px,#00ff00 20px,#00ff00 40px,#0000ff 40px,#0000ff 60px); padding: 8px; }
+  .nav a { margin: 6px; display: inline-block; font-weight: 800; }
+
+  /* beweeg alles een beetje random */
+  .wobble { animation: wob 3s ease-in-out infinite; display: inline-block; }
+  @keyframes wob { 0%,100%{ transform: translateY(0) rotate(0); } 25%{ transform: translateY(-6px) rotate(-2deg);} 50%{ transform: translateY(3px) rotate(1deg);} 75%{ transform: translateY(-3px) rotate(2deg);} }
+
+  /* foute grid binnen tabel */
+  .fake-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+  .fake-grid div { background: conic-gradient(from 90deg at 50% 50%, #ff0, #f0f, #0ff, #ff0); padding: 12px; border: 6px ridge #000; }
+
+  /* Lo-res potato SVG als achtergrond ornament */
+  .potato { width: 120px; height: 90px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="90"><ellipse cx="60" cy="45" rx="55" ry="40" fill="%23c69c6d" stroke="%238b5a2b" stroke-width="6"/><circle cx="40" cy="35" r="4" fill="%238b5a2b"/><circle cx="70" cy="30" r="5" fill="%238b5a2b"/><circle cx="80" cy="50" r="4" fill="%238b5a2b"/><circle cx="55" cy="60" r="5" fill="%238b5a2b"/></svg>'); background-size: cover; filter: contrast(2) saturate(2) hue-rotate(45deg); }
+
+  /* afschuwelijke progress bars */
+  progress { width: 100%; height: 40px; accent-color: #f0f; }
+
+  /* onnodige media queries voor chaos */
+  @media (max-width: 900px) {
+    body { filter: invert(1) contrast(1.6) sepia(0.7); }
+  }
+</style>
+</head>
+<body>
+  <!-- Zeer slechte, drukke kop -->
+  <div class="nav bad-border">
+    <a href="#intro">Intro</a>
+    <a href="#manifest">Manifest</a>
+    <a href="#soorten">Aardappelsoorten</a>
+    <a href="#recepten">Recepten</a>
+    <a href="#wetenschap">Wetenschap</a>
+    <a href="#faq">FAQ</a>
+    <a href="#gastboek">Gastboek</a>
+    <a href="#ascii">ASCII-Kunst</a>
+    <a href="#gallery">Galerij</a>
+    <a href="#sponsors">SPONSORS</a>
+  </div>
+
+  <marquee behavior="alternate" scrollamount="20" class="bad-border" style="margin:10px; font-size:28px; background:#ff0; color:#f0f;">
+    🥔 WELKOM BIJ DE INTERNATIONALE AARDAPPEL FANCLUB — DE LELIJKSTE SITE TER WERELD! 🥔
+  </marquee>
+
+  <header id="intro" class="section bad-border mix-fonts">
+    <h1 class="shake">De <span class="spin">INTERNATIONALE</span> AARDAPPEL FANCLUB</h1>
+    <p class="blink" style="font-size:24px; text-align:center;">Missie: AARDAPPEL. VISION: AARDAPPEL. Strategie: <span class="wobble">AARDAPPEL.</span></p>
+    <div class="potato" title="Potato, maar dan lelijk"></div>
+    <p>
+      Deze website is <strong>opzettelijk afzichtelijk</strong>. Kleuren botsen, tekst is onleesbaar, en layout is… eh… creatief. Trek gerust je zonnebril aan.
+    </p>
+    <div class="marquee" style="font-size:20px; background:#0ff;">
+      <span>⚠️ Belangrijk: klik op ALLES. Niets is logisch. Alles is AARDAPPEL. — ⚠️ Belangrijk: klik op ALLES. Niets is logisch. Alles is AARDAPPEL. — </span>
+    </div>
+  </header>
+
+  <section id="manifest" class="section">
+    <h2>Ons Manifest</h2>
+    <table class="layout bad-border">
+      <tr>
+        <td>
+          <h3>Waarom Aardappel?</h3>
+          <ul>
+            <li>Ruw, rond, robuust.</li>
+            <li>Past bij alles. Zelfs bij taart (niet doen).</li>
+            <li>Heeft ogen, maar ziet niets. Poëtisch.</li>
+          </ul>
+          <a class="btn" href="#">Klik hier voor niets</a>
+        </td>
+        <td>
+          <h3>Onze Kernwaarden</h3>
+          <ol>
+            <li>Knollen boven knappe UI.</li>
+            <li>Kartoffel is koning.</li>
+            <li>UIP (User Irritation Priority).</li>
+          </ol>
+        </td>
+        <td>
+          <h3>Doelen 2025</h3>
+          <div class="fake-grid">
+            <div>1M fans</div>
+            <div>0 smaak</div>
+            <div>∞ aardappels</div>
+            <div>3 sites per dag</div>
+            <div>🥔🥔🥔</div>
+            <div>CSS drama</div>
+            <div>Tabellen 4ever</div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section id="soorten" class="section bad-border">
+    <h2>Aardappelsoorten (te veel informatie)</h2>
+    <table class="data">
+      <thead>
+        <tr><th>Naam</th><th>Schil</th><th>Textuur</th><th>Geschikt voor</th><th>Score</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bintje</td><td>Geel</td><td>Meelig</td><td>Friet</td><td><progress max="100" value="73"></progress></td></tr>
+        <tr><td>Nicolas</td><td>Dun</td><td>Vastkokend</td><td>Salade</td><td><progress max="100" value="51"></progress></td></tr>
+        <tr><td>Russet</td><td>Ruw</td><td>Droog</td><td>Gebakken</td><td><progress max="100" value="88"></progress></td></tr>
+        <tr><td>Vitelotte (paars)</td><td>Paars</td><td>Hipster</td><td>Instagram</td><td><progress max="100" value="12"></progress></td></tr>
+        <tr><td>Krieltjes</td><td>Mini</td><td>Kauwbaar</td><td>Alles</td><td><progress max="100" value="99"></progress></td></tr>
+      </tbody>
+    </table>
+    <p><small>Legenda: hoe hoger de score, hoe willekeuriger gekozen.</small></p>
+  </section>
+
+  <section id="recepten" class="section">
+    <h2>Recepten (die niemand vroeg)</h2>
+    <div class="bad-border" style="padding:10px;">
+      <h3>Paarse Aardappel Smoothie</h3>
+      <ul>
+        <li>2 Vitelotte aardappels</li>
+        <li>1 banaan (voor kleurverwarring)</li>
+        <li>5 ijsblokjes (want fancy)</li>
+        <li>Een snufje… zout?</li>
+      </ul>
+      <p>Kook de aardappels. Blend alles. Vraag je levenskeuzes opnieuw af.</p>
+    </div>
+    <div class="bad-border" style="padding:10px; margin-top:20px;">
+      <h3>Friet XXL met niets</h3>
+      <p>Snijd een aardappel <em>helemaal niet</em>. Bak hem heel. Noem het rustiek.</p>
+      <button class="btn" onclick="alert('Gefopt. Er is geen recept.')">Download recept (0 KB)</button>
+    </div>
+  </section>
+
+  <section id="wetenschap" class="section bad-border">
+    <h2>Wetenschap (quasi)</h2>
+    <p>We hebben <strong>totaal geen peer review</strong> gedaan, maar kijk naar deze grafiek die niets betekent:</p>
+    <svg viewBox="0 0 300 120" width="100%" height="160" style="background:#fff; border:10px solid #f0f;">
+      <rect x="10" y="20" width="40" height="80" fill="#ff0"/>
+      <rect x="70" y="10" width="40" height="90" fill="#0ff"/>
+      <rect x="130" y="50" width="40" height="50" fill="#f0f"/>
+      <rect x="190" y="5" width="40" height="95" fill="#0f0"/>
+      <rect x="250" y="40" width="40" height="60" fill="#f00"/>
+      Sorry, je browser ondersteunt geen SVG (huilen).
+    </svg>
+    <p class="blink">Conclusie: de staven zijn verschillend → wetenschap!</p>
+  </section>
+
+  <section id="faq" class="section">
+    <h2>FAQ (Frequente Absurdistische Quaesties)</h2>
+    <details open class="bad-border"><summary><b>Zijn aardappels groenten of magie?</b></summary><p>Ja.</p></details>
+    <details class="bad-border"><summary><b>Kan ik lid worden?</b></summary><p>Ja, maar stuur eerst 100 emoji 🥔 naar jezelf.</p></details>
+    <details class="bad-border"><summary><b>Waarom is deze website zo lelijk?</b></summary><p>Artistieke vrijheid. En een beetje wraak op goede smaak.</p></details>
+  </section>
+
+  <section id="gastboek" class="section bad-border">
+    <h2>Gastboek (nep)</h2>
+    <form onsubmit="alert('Dank! Je bericht is naar /dev/null verzonden.'); return false;">
+      <label>Naam <input required placeholder="Aardappelliefhebber" /></label>
+      <label>Land <select><option>NL</option><option>BE</option><option>DE</option><option>🥔</option></select></label>
+      <label>Bericht <textarea rows="4">Schrijf hier je lofzang op knollen…</textarea></label>
+      <button class="btn" type="submit">Verstuur</button>
+    </form>
+  </section>
+
+  <section id="ascii" class="section">
+    <h2>ASCII-Kunst (omdat het kan)</h2>
+<pre>
+         _.-''''-._
+       .'  _     _  '.
+      /   (_)   (_)   \
+     |  .------------. |
+     | |   POTATO!   | |
+     |  '------------' |
+      \     _.._      /
+       '.  '    '   .'
+         '-._____.-'
+</pre>
+  </section>
+
+  <section id="gallery" class="section bad-border">
+    <h2>Galerij (zonder afbeeldingen, natuurlijk)</h2>
+    <div style="display:flex; flex-wrap:wrap; gap:20px;">
+      <div class="potato" style="width:200px; height:160px;"></div>
+      <div class="potato" style="width:240px; height:140px; filter: hue-rotate(180deg) blur(1px);"></div>
+      <div class="potato" style="width:160px; height:160px; transform: scaleX(-1);"></div>
+      <div class="potato" style="width:220px; height:120px; filter: grayscale(1) contrast(3);"></div>
+      <div class="potato" style="width:300px; height:200px; filter: sepia(1) saturate(4);"></div>
+      <div class="potato" style="width:180px; height:220px; filter: brightness(2);"></div>
+    </div>
+  </section>
+
+  <section id="sponsors" class="section">
+    <h2>SPONSORS (fictief)</h2>
+    <ul>
+      <li><a href="#">KartoffelKoning BV</a></li>
+      <li><a href="#">Knollenkabinet Inc.</a></li>
+      <li><a href="#">Fr33 Friet</a></li>
+      <li><a href="#">Patat & Papyrus</a></li>
+    </ul>
+  </section>
+
+  <!-- herhaalbare rommel voor extra lengte -->
+  <section class="section bad-border">
+    <h2>Extra Inhoud #1</h2>
+    <p>Deze paragraaf is puur vulling om de site groter te maken. Lorem aardappel dolor sit amet, tuber adipiscing elit. Maecenas dignissim purus in… aardappel.</p>
+  </section>
+  <section class="section bad-border">
+    <h2>Extra Inhoud #2</h2>
+    <p>Meer vulling, minder smaak. Praesent congue magna non sapien bibendum. Integer non knol sapien. Vivamus nec patata est.</p>
+  </section>
+  <section class="section bad-border">
+    <h2>Extra Inhoud #3</h2>
+    <p>Als je tot hier scrolt, ben je officieel lid. Stuur jezelf een certificaat in Paint.</p>
+  </section>
+
+  <footer>
+    © 1997–2025 Internationale Aardappel Fanclub — Laatste update: zodra iemand per ongeluk op verversen klikt.
+  </footer>
+
+  <script>
+    // onzinnige JS om het erger te maken
+    (function(){
+      const colors = ['#ff00ff','#00ffff','#ffff00','#00ff00','#ff0000','#0000ff'];
+      setInterval(()=>{
+        document.querySelectorAll('h2').forEach((h,i)=>{
+          h.style.color = colors[(Date.now()/200 + i|0)%colors.length];
+        });
+      }, 200);
+
+      // hinderlijke tooltips
+      document.querySelectorAll('a, .btn, .potato').forEach(el=>{
+        el.title = '🥔 Klik? Waarom? Gewoon, omdat het kan.';
+      });
+
+      // random achtergrond-flash
+      setInterval(()=>{
+        document.body.style.backgroundPosition = `${Math.random()*1000}px ${Math.random()*1000}px`;
+      }, 500);
+    })();
+  </script>
+</body>
+</html>
